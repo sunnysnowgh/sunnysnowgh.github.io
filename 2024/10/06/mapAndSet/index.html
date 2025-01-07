@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="author" content="Sunny Snow"/><meta name="keyword"/><meta name="description" content="C++ map和set容器介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mapAndSet">
+<meta property="og:url" content="http://example.com/2024/10/06/mapAndSet/index.html">
+<meta property="og:site_name" content="sunnysnow">
+<meta property="og:description" content="C++ map和set容器介绍">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-06T03:15:48.000Z">
+<meta property="article:modified_time" content="2025-01-07T11:17:40.706Z">
+<meta property="article:author" content="Sunny Snow">
+<meta name="twitter:card" content="summary"><title>mapAndSet - MEOW - A Cute and Bright Hexo Theme</title><link rel="shortcut icon" href="/img/site-icon.png">
+<link rel="stylesheet" href="/css/style.css" id="dm-light">
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+<meta name="generator" content="Hexo 7.3.0"></head><body><header><div class="top-nav" ondblclick="scrollToTop()"><div class="nav-info"><div class="nav-icon"><img id="nav-icon" src="/img/site-icon.png"/></div><div class="nav-title"><a id="nav-title" href="/" title="Home">sunnysnow</a></div></div><div class="nav-ribbon"><div class="top-menu-expanded"><a class="top-menu-item" href="/archives"><span>Archives</span></a><a class="top-menu-item" href="/categories"><span>Categories</span></a><a class="top-menu-item" href="/tags"><span>Tags</span></a><a class="top-menu-item" href="/about"><span>About</span></a></div><div id="top-menu-btn" onclick="openTopMenu()" title="Open Menu"><i class="fa-solid fa-bars fa-lg"></i></div></div></div></header><div id="top-menu-hidden"><div class="menu-hidden-content"><div class="menu-hidden-nav"><a class="menu-hidden-item" href="/archives"><i class="fa-solid fa-box-archive fa-sm"></i><span>Archives</span></a><a class="menu-hidden-item" href="/categories"><i class="fa-regular fa-folder-open fa-sm"></i><span>Categories</span></a><a class="menu-hidden-item" href="/tags"><i class="fa-solid fa-tags fa-sm"></i><span>Tags</span></a><a class="menu-hidden-item" href="/about"><i class="fa-solid fa-paw fa-sm"></i><span>About</span></a></div></div><div class="menu-hidden-blank" onclick="closeTopMenu()"></div></div>
+<div class="blog-info"><div class="blog-pic"><img id="blog-pic" src="/img/site-icon.png"/></div><div class="blog-title"><i class="fa-solid fa-paw fa-2xs fa-rotate-by"></i><span>MEOW</span><i class="fa-solid fa-paw fa-2xs fa-rotate-by"></i></div><div class="blog-desc"> </div></div><div class="main"><div class="main-content"><article class="post"><div class="post-title"><h1><i class="fa-solid fa-paw"></i>mapAndSet</h1></div><div class="post-info"><div class="post-info-first-line"><div class="post-date"><i class="icon fa-regular fa-calendar-plus" title="Published date"></i><time class="publish-time">2024-10-06</time><i class="icon fa-regular fa-calendar-check" title="Updated date"></i><time class="update-time">2025-01-07</time></div>
+
+</div><div class="post-info-second-line"><div class="post-copyright"><i class="icon fa-brands fa-creative-commons" title="Copyright"></i><span>Copyright: </span><a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" title="CC BY-NC-ND 4.0">BY-NC-ND 4.0</a></div>
+<div class="post-word-count"><i class="icon fa-solid fa-pen-to-square"></i><span>About 577 words</span></div><div class="pageview-post"><i class="icon fa-regular fa-eye"></i><span id="busuanzi_container_page_pv">Hits: <span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner"></i></span></span></div></div></div><div class="post-content"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//map 初始化</span></span><br><span class="line">map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; amap = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">3</span>, <span class="number">4</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有序map需定义first类型的<code>&lt;</code>运算符，也可自己提供比较操作，需满足如下条件：</p>
+<ol>
+<li><p>非自反，<code>a&lt;b</code>则无<code>b&lt;a</code></p>
+</li>
+<li><p>传递，<code>a&lt;b,b&lt;c</code>则有<code>a&lt;c</code></p>
+</li>
+<li><p>若<code>a,b</code>等价（<code>a,b不可比</code>)且<code>b,c</code>等价，则<code>a,c</code>等价</p>
+<p> 可以使用<code>decltype(funcname)*</code>来获取函数指针类型,注意结尾的<code>*</code></p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 带自定义比较操作的初始化，注意构造函数加的参数</span></span><br><span class="line"><span class="function">multiset&lt;<span class="type">int</span>, <span class="title">decltypr</span><span class="params">(compare)</span>*&gt; <span class="title">intSet</span><span class="params">(compare)</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关联操作类型</span></span><br><span class="line">key_type <span class="comment">// 第一个成员类型</span></span><br><span class="line">mapped_type <span class="comment">// 第二个成员类型</span></span><br><span class="line">value_type <span class="comment">// set:key_type, map:pair&lt;const key,mapped&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意set和map的关键字是const的</p>
+<p>添加元素的操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 元素不存在时，插入单个元素</span></span><br><span class="line"><span class="comment">// 返回pair，first为指向该元素的迭代器(无论成功失败），second为是否插入成功(已存在则false)</span></span><br><span class="line"><span class="comment">// 对于multi版本则只返回迭代器</span></span><br><span class="line">c.<span class="built_in">insert</span>(v)</span><br><span class="line">c.<span class="built_in">emplcae</span>(arg) <span class="comment">// 相当于insert省略了make_pair</span></span><br><span class="line"><span class="comment">// 插入一系列不存在的元素</span></span><br><span class="line"><span class="comment">// 返回void</span></span><br><span class="line">c.<span class="built_in">insert</span>(begin,end)</span><br><span class="line">c,<span class="built_in">insert</span>(il) <span class="comment">// 花括号列表</span></span><br><span class="line"><span class="comment">// 同最上，但指定了搜索位置的起点</span></span><br><span class="line">c.<span class="built_in">insert</span>(p,v) <span class="comment">// ?配合upper_bound使用</span></span><br><span class="line">c.<span class="built_in">emplcae</span>(p,arg) <span class="comment">// 相当于insert省略了make_pair</span></span><br></pre></td></tr></table></figure>
+
+<p>删除元素的操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.<span class="built_in">erase</span>(k) <span class="comment">// 删除所有关键词为k的元素，返回删除数量</span></span><br><span class="line">c.<span class="built_in">erase</span>(p) <span class="comment">// 删除迭代器p指向的元素，返回其后元素迭代器</span></span><br><span class="line">c.<span class="built_in">erase</span>(begin,end) <span class="comment">// 删除迭代器b，e表示的范围，返回e</span></span><br></pre></td></tr></table></figure>
+
+<p>下标操作</p>
+<p>仅能对不允许重复的map进行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c[k] <span class="comment">// 返回k对应元素，若无k，则添加并值初始化</span></span><br><span class="line">c.<span class="built_in">at</span>(k) <span class="comment">// 返回k对应元素，若无k，则抛出异常</span></span><br></pre></td></tr></table></figure>
+
+<p>访问元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">c.<span class="built_in">find</span>(k) <span class="comment">// 返回指向第一个为k的迭代器，若没有则尾后迭代器</span></span><br><span class="line">c.<span class="built_in">count</span>(k) <span class="comment">// 返回关键字为k的元素数量</span></span><br><span class="line"></span><br><span class="line">c.<span class="built_in">lower_bound</span>(k) <span class="comment">// 返回it指向第一个大于等于k的元素</span></span><br><span class="line">c.<span class="built_in">upper_bound</span>(k) <span class="comment">// 返回it指向第一个大于k的</span></span><br><span class="line">c.<span class="built_in">equal_range</span>(k) <span class="comment">// 返回pair&lt;it, it&gt; 表示等于k的元素的范围，k不存在则均为end</span></span><br></pre></td></tr></table></figure>
+</div><div class="post-end"><div class="post-prev"></div><div class="post-reward" onclick="openPostReward()" title="Rewards"><i class="fa-regular fa-thumbs-up fa-xl fa-beat-fade"></i></div><div id="reward-panel" onclick="closePostReward()"><div class="reward-container"><p>If you like this article, welcome to pay me a coffee, thanks&#128151;</p>
+<div class="reward-nav"><div class="reward-item"><img class="reward-img" src="/img/reward/wechat.jpg" title="Wechat" alt="Wechat"/><span>Wechat</span></div><div class="reward-item"><img class="reward-img" src="/img/reward/alipay.jpg" title="Alipay" alt="Alipay"/><span>Alipay</span></div></div></div></div><div class="post-next"></div></div></article><div id="post-toc"><aside class="toc-aside"><div class="toc-title"><span><i class="fa-solid fa-paw"></i>TOC</span></div><div class="toc-container" id="toc-body"></div></aside><div class="toc-blank" onclick="tocToggle()"></div></div></div></div><div id="tool-bar"><div id="tool-bar-main"><div id="tool-toggle" onclick="toolToggle()" title="Settings"><i class="fa-solid fa-gear"></i></div><div id="toc-toggle" onclick="tocToggle()" title="TOC"><i class="fa-solid fa-list-ul"></i></div><div id="back-to-top" onclick="scrollToTop()" title="Back To Top"><i class="fa-solid fa-chevron-up"></i></div></div><div id="tool-bar-more" style="display: none;"><div id="darkmode-switch" onclick="darkmodeSwitch()" title="Darkmode"><i class="fa-solid fa-circle-half-stroke"></i></div><div id="font-size-increase" onclick="fontSizeIncrease()" title="Increase Font Size"><i class="fa-solid fa-plus"></i></div><div id="font-size-decrease" onclick="fontSizeDecrease()" title="Decrease Font Size"><i class="fa-solid fa-minus"></i></div></div></div><footer><div class="footer-content"><div class="copyright-info"><i class="fa-regular fa-copyright fa-xs"></i><span>2024 - 2025 </span><a href="/about">Sunny Snow</a><i class="fa-solid fa-cat fa-sm"></i><span>Powered by </span><a href="https://hexo.io/" target="_blank">Hexo</a><span> &amp; </span><a href="https://github.com/chanwj/hexo-theme-meow" target="_blank" title="v2.1.0">Theme Meow</a></div><div class="pageview-site"><span id="busuanzi_container_site_pv">Total hits : <span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner"></i></span></span><span id="busuanzi_container_site_uv">Total visitors : <span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner"></i></span></span></div></div></footer>
+<script>const GLOBAL_CONFIG = {
+  comment: { theme: ''}
+}
+</script>
+<script src="/js/third-party/darkmode.js"></script>
+<script>var options = {
+  dark: '/css/darkmode.css',
+  startAt: '24:00',
+  endAt: '06:00',
+  checkSystemScheme: 'false',
+  saveOnToggle: 'true'
+};
+var darkMode = new DarkMode(options);
+// change comment theme synchronously 同步修改评论区主题
+if (darkMode.getMode() == "dark" && (false || false)) {
+  if (document.getElementById('comment')) {
+    document.getElementById('comment').getElementsByTagName('script')[0].setAttribute('data-theme', 'noborder_dark');
+  }
+}
+</script><script>if (localStorage.getItem('font-size')) {
+  document.querySelector('.post-content').style.fontSize = localStorage.getItem('font-size') + 'px';
+}
+</script>
+<script src="/js/theme/tool-bar.js"></script>
+
+
+<script src="/js/theme/menu.js"></script>
+
+
+<script src="/js/third-party/clipboard.min.js"></script>
+
+
+<script src="/js/theme/copy.js"></script>
+<script>copyCode();
+</script>
+<script src="/js/theme/reward.js"></script>
+</body></html>
